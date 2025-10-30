@@ -1,91 +1,62 @@
-module "raw_workspace" {
-  source = "../../modules/workspace"
-  workspace_name                  = "db-uks-d-databricks-raw"
-  resource_group_name             = data.azurerm_resource_group.rg_databricks.name
-  location                        = var.location
-  vnet_id                         = data.azurerm_virtual_network.vnet_databricks.id
-  private_subnet_name             = "snet-uks-10.20.2.0_24-databricks-private"
-  public_subnet_name              = "snet-uks-10.20.1.0_24-databricks-public"
-  private_nsg_association_id      = module.network.private_nsg_id
-  public_nsg_association_id       = module.network.public_nsg_id
-  tags                            = local.tags
+
+data "azurerm_resource_group" "rg_databricks" {
+  name = var.resource_group_name
 }
 
-module "silver_workspace" {
-  source = "../../modules/workspace"
-  workspace_name                  = "db-uks-d-databricks-silver"
-  resource_group_name             = data.azurerm_resource_group.rg_databricks.name
-  location                        = var.location
-  vnet_id                         = data.azurerm_virtual_network.vnet_databricks.id
-  private_subnet_name             = "snet-uks-10.20.2.0_24-databricks-private"
-  public_subnet_name              = "snet-uks-10.20.1.0_24-databricks-public"
-  private_nsg_association_id      = module.network.private_nsg_id
-  public_nsg_association_id       = module.network.public_nsg_id
-  tags                            = local.tags
-}
 
-module "gold_workspace" {
-  source = "../../modules/workspace"
-  workspace_name                  = "db-uks-d-databricks-gold"
-  resource_group_name             = data.azurerm_resource_group.rg_databricks.name
-  location                        = var.location
-  vnet_id                         = data.azurerm_virtual_network.vnet_databricks.id
-  private_subnet_name             = "snet-uks-10.20.2.0_24-databricks-private"
-  public_subnet_name              = "snet-uks-10.20.1.0_24-databricks-public"
-  private_nsg_association_id      = module.network.private_nsg_id
-  public_nsg_association_id       = module.network.public_nsg_id
-  tags                            = local.tags
-}
-
-module "access_connector" {
-  source              = "../../modules/access_connector"
-  name                = "dbac-uks-d-extstore-dev"
+resource "azurerm_virtual_network" "vnet_databricks" {
+  name                = "vnet-databricks-dev"
+  address_space       = ["10.0.0.0/16"]
   location            = var.location
   resource_group_name = data.azurerm_resource_group.rg_databricks.name
 }
 
-module "private_endpoints" {
-  source                  = "../../modules/endpoints"
-  workspace_ids           = [
-    module.raw_workspace.workspace_id,
-    module.silver_workspace.workspace_id,
-    module.gold_workspace.workspace_id
-  ]
-  managed_rg_ids          = [
-    module.raw_workspace.managed_resource_group_id,
-    module.silver_workspace.managed_resource_group_id,
-    module.gold_workspace.managed_resource_group_id
-  ]
-  storage_account_names   = ["stuksdevdb001", "stuksdevdb001", "stuksdevdb001"]
-  subnet_id               = module.network.pep_subnet_id
-  dns_zone_ids            = {
+
+module "network" {
+  source              = "../../modules/databricks/networks"
+  resource_group_name = data.azurerm_resource_group.rg_databricks.name
+  location            = var.location
+  vnet_name           = azurerm_virtual_network.vnet_databricks.name
+  private_subnet_name = var.private_subnet_name_dev
+  public_subnet_name  = var.public_subnet_name_dev
+}
+
+
+module "workspace" {
+  source = "../../modules/databricks"
+  workspace_name = var.workspace_name
+  resource_group_name = data.azurerm_resource_group.rg_databricks.name
+  location = var.location
+  vnet_id = azurerm_virtual_network.vnet_databricks.id
+  public_subnet_name = var.public_subnet_name_dev
+  private_subnet_name = var.private_subnet_name_dev
+  public_subnet_network_security_group_association_id = module.network.public_subnet_nsg_assoc_id
+  private_subnet_network_security_group_association_id = module.network.private_subnet_nsg_assoc_id
+  public_nsg_association_id  = module.network.public_nsg_id
+  private_nsg_association_id = module.network.private_nsg_id
+  public_network_access_enabled = true
+  network_security_group_rules_required = "NoAzureDatabricksRules"
+  customer_managed_key_enabled = true
+  no_public_ip = true
+  tags = local.tags
+}
+
+
+
+
+
+
+module "access_connector" {
+  source                = "../../modules/databricks/privateendpoints"
+  location              = var.location
+  resource_group_name   = data.azurerm_resource_group.rg_databricks.name
+  workspace_ids         = [module.workspace.workspace_id]
+  managed_rg_ids        = [module.workspace.managed_resource_group_id]
+  storage_account_names = ["stuksdevdb001"]
+  subnet_id             = module.network.pep_subnet_id
+  dns_zone_ids = {
     databricks = local.private_dns_zone_azuredatabricks
     blob       = local.private_dns_zone_blob
     dfs        = local.private_dns_zone_dfs
   }
-}
-
-module "unity_catalog" {
-  source                = "../../modules/unity_catalog"
-  metastore_name        = "uc-metastore-dev"
-  region                = var.location
-  storage_root_url      = "abfss://metastore@stuksdevdb001.dfs.core.windows.net/"
-  access_connector_id   = module.access_connector.id
-  workspace_ids         = [
-    module.raw_workspace.workspace_id,
-    module.silver_workspace.workspace_id,
-    module.gold_workspace.workspace_id
-  ]
-  external_locations = {
-    raw    = "abfss://raw@stuksdevdb001.dfs.core.windows.net/"
-    silver = "abfss://silver@stuksdevdb001.dfs.core.windows.net/"
-    gold   = "abfss://gold@stuksdevdb001.dfs.core.windows.net/"
-  }
-}
-
-module "network" {
-  source              = "../../modules/network"
-  resource_group_name = data.azurerm_resource_group.rg_databricks.name
-  location            = var.location
-  vnet_name           = data.azurerm_virtual_network.vnet_databricks.name
 }
