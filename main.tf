@@ -7,3 +7,15 @@ resource "azurerm_resource_group" "databricks_rg" {
   name     = "rg-databricks-dev-uks-01"
   location = "uksouth"
 }
+
+
+resource "azurerm_resource_group" "databricks_rg_test" {
+  name     = "rg-databricks-test-uks-01"
+  location = "uksouth"
+}
+
+
+resource "azurerm_resource_group" "databricks_rg_prod" {
+  name     = "rg-databricks-prod-uks-01"
+  location = "uksouth"
+}

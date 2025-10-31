@@ -13,4 +13,12 @@ variable "subnet_id" {}
 variable "dns_zone_ids" {
   type = map(string)
 }
+variable "depends_on_workspace" {
+  type = list(any)
+  default = []
+}
+variable "subscription_id" {
+  type = string
+}
+
 

@@ -12,7 +12,7 @@ resource "azurerm_subnet" "databricks_private" {
   name                 = var.private_subnet_name
   resource_group_name  = var.resource_group_name
   virtual_network_name = var.vnet_name
-  address_prefixes     = ["10.0.1.0/24"]
+  address_prefixes     = ["10.40.11.0/24"]
   delegation {
     name = "databricks-delegation"
     service_delegation {
@@ -28,7 +28,7 @@ resource "azurerm_subnet" "databricks_public" {
   name                 = var.public_subnet_name
   resource_group_name  = var.resource_group_name
   virtual_network_name = var.vnet_name
-  address_prefixes     = ["10.0.2.0/24"]
+  address_prefixes     = ["10.40.10.0/24"]
   delegation {
     name = "databricks-delegation"
     service_delegation {
@@ -44,7 +44,7 @@ resource "azurerm_subnet" "pep_subnet" {
   name                 = "snet-databricks-pep"
   resource_group_name  = var.resource_group_name
   virtual_network_name = var.vnet_name
-  address_prefixes     = ["10.0.3.0/24"]
+  address_prefixes     = ["10.40.12.0/24"]
 }
 
 resource "azurerm_network_security_group" "private_nsg" {

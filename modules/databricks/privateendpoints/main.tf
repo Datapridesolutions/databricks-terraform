@@ -13,6 +13,9 @@ resource "azurerm_private_endpoint" "pep_control_plane" {
   location            = var.location
   resource_group_name = var.resource_group_name
   subnet_id           = var.subnet_id
+ // depends_on = var.depends_on_workspace
+
+
 
   private_service_connection {
     name                           = "psc-databricks-control-plane"
@@ -32,6 +35,8 @@ resource "azurerm_private_endpoint" "pep_webauth" {
   location            = var.location
   resource_group_name = var.resource_group_name
   subnet_id           = var.subnet_id
+  //depends_on = var.depends_on_workspace
+
 
   private_service_connection {
     name                           = "psc-databricks-webauth"
@@ -51,10 +56,14 @@ resource "azurerm_private_endpoint" "pep_blob" {
   location            = var.location
   resource_group_name = var.resource_group_name
   subnet_id           = var.subnet_id
+  //depends_on = var.depends_on_workspace
+
+
 
   private_service_connection {
     name                           = "psc-databricks-blob"
-    private_connection_resource_id = "${var.managed_rg_ids[0]}/providers/Microsoft.Storage/storageAccounts/${var.storage_account_names[0]}"
+   // private_connection_resource_id = "${var.managed_rg_ids[0]}/providers/Microsoft.Storage/storageAccounts/${var.storage_account_names[0]}"
+    private_connection_resource_id = "/subscriptions/${var.subscription_id}/resourceGroups/${var.managed_rg_ids[0]}/providers/Microsoft.Storage/storageAccounts/${var.storage_account_names[0]}"
     is_manual_connection           = false
     subresource_names              = ["blob"]
   }
@@ -70,10 +79,14 @@ resource "azurerm_private_endpoint" "pep_dfs" {
   location            = var.location
   resource_group_name = var.resource_group_name
   subnet_id           = var.subnet_id
+  //depends_on = var.depends_on_workspace
+
+
 
   private_service_connection {
     name                           = "psc-databricks-dfs"
-    private_connection_resource_id = "${var.managed_rg_ids[0]}/providers/Microsoft.Storage/storageAccounts/${var.storage_account_names[0]}"
+    //private_connection_resource_id = "${var.managed_rg_ids[0]}/providers/Microsoft.Storage/storageAccounts/${var.storage_account_names[0]}"
+    private_connection_resource_id = "/subscriptions/${var.subscription_id}/resourceGroups/${var.managed_rg_ids[0]}/providers/Microsoft.Storage/storageAccounts/${var.storage_account_names[0]}"
     is_manual_connection           = false
     subresource_names              = ["dfs"]
   }

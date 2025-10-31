@@ -1,0 +1,995 @@
+{
+  "version": 4,
+  "terraform_version": "1.13.4",
+  "serial": 38,
+  "lineage": "273f1884-3eb8-2929-ab75-8c81ab5fd8fd",
+  "outputs": {},
+  "resources": [
+    {
+      "mode": "data",
+      "type": "azurerm_resource_group",
+      "name": "rg_databricks",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01",
+            "location": "uksouth",
+            "managed_by": "",
+            "name": "rg-databricks-prod-uks-01",
+            "tags": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "azurerm_virtual_network",
+      "name": "vnet_databricks",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "address_space": [
+              "10.40.0.0/16"
+            ],
+            "bgp_community": "",
+            "ddos_protection_plan": [],
+            "dns_servers": [],
+            "edge_zone": "",
+            "encryption": [],
+            "flow_timeout_in_minutes": 0,
+            "guid": "32f30d6d-d472-4608-99d1-995f680edad0",
+            "id": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01/providers/Microsoft.Network/virtualNetworks/vnet-databricks-prod",
+            "ip_address_pool": [],
+            "location": "uksouth",
+            "name": "vnet-databricks-prod",
+            "private_endpoint_vnet_policies": "Disabled",
+            "resource_group_name": "rg-databricks-prod-uks-01",
+            "subnet": [
+              {
+                "address_prefixes": [
+                  "10.40.10.0/24"
+                ],
+                "default_outbound_access_enabled": true,
+                "delegation": [
+                  {
+                    "name": "databricks-delegation",
+                    "service_delegation": [
+                      {
+                        "actions": [
+                          "Microsoft.Network/virtualNetworks/subnets/join/action",
+                          "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action",
+                          "Microsoft.Network/virtualNetworks/subnets/unprepareNetworkPolicies/action"
+                        ],
+                        "name": "Microsoft.Databricks/workspaces"
+                      }
+                    ]
+                  }
+                ],
+                "id": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01/providers/Microsoft.Network/virtualNetworks/vnet-databricks-prod/subnets/snet-databricks-public-10.40.10.0_24",
+                "name": "snet-databricks-public-10.40.10.0_24",
+                "private_endpoint_network_policies": "Disabled",
+                "private_link_service_network_policies_enabled": true,
+                "route_table_id": "",
+                "security_group": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01/providers/Microsoft.Network/networkSecurityGroups/nsg-databricks-public",
+                "service_endpoint_policy_ids": [],
+                "service_endpoints": []
+              },
+              {
+                "address_prefixes": [
+                  "10.40.11.0/24"
+                ],
+                "default_outbound_access_enabled": true,
+                "delegation": [
+                  {
+                    "name": "databricks-delegation",
+                    "service_delegation": [
+                      {
+                        "actions": [
+                          "Microsoft.Network/virtualNetworks/subnets/join/action",
+                          "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action",
+                          "Microsoft.Network/virtualNetworks/subnets/unprepareNetworkPolicies/action"
+                        ],
+                        "name": "Microsoft.Databricks/workspaces"
+                      }
+                    ]
+                  }
+                ],
+                "id": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01/providers/Microsoft.Network/virtualNetworks/vnet-databricks-prod/subnets/snet-databricks-private-10.40.11.0_24",
+                "name": "snet-databricks-private-10.40.11.0_24",
+                "private_endpoint_network_policies": "Disabled",
+                "private_link_service_network_policies_enabled": true,
+                "route_table_id": "",
+                "security_group": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01/providers/Microsoft.Network/networkSecurityGroups/nsg-databricks-private",
+                "service_endpoint_policy_ids": [],
+                "service_endpoints": []
+              },
+              {
+                "address_prefixes": [
+                  "10.40.12.0/24"
+                ],
+                "default_outbound_access_enabled": true,
+                "delegation": [],
+                "id": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01/providers/Microsoft.Network/virtualNetworks/vnet-databricks-prod/subnets/snet-databricks-pep",
+                "name": "snet-databricks-pep",
+                "private_endpoint_network_policies": "Disabled",
+                "private_link_service_network_policies_enabled": true,
+                "route_table_id": "",
+                "security_group": "",
+                "service_endpoint_policy_ids": [],
+                "service_endpoints": []
+              }
+            ],
+            "tags": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "name": "vnet-databricks-prod",
+            "resource_group_name": "rg-databricks-prod-uks-01",
+            "subscription_id": "70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "data.azurerm_resource_group.rg_databricks"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.access_connector",
+      "mode": "managed",
+      "type": "azurerm_databricks_access_connector",
+      "name": "this",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01/providers/Microsoft.Databricks/accessConnectors/dbac-uks-d-extstore-dev",
+            "identity": [
+              {
+                "identity_ids": [],
+                "principal_id": "d4c44044-bdc2-46fb-aec9-013e906d2b02",
+                "tenant_id": "dbc7dd73-171f-4c32-a582-fb7160af0c15",
+                "type": "SystemAssigned"
+              }
+            ],
+            "location": "uksouth",
+            "name": "dbac-uks-d-extstore-dev",
+            "resource_group_name": "rg-databricks-prod-uks-01",
+            "tags": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_virtual_network.vnet_databricks",
+            "data.azurerm_resource_group.rg_databricks",
+            "module.network.azurerm_network_security_group.private_nsg",
+            "module.network.azurerm_network_security_group.public_nsg",
+            "module.network.azurerm_subnet.databricks_private",
+            "module.network.azurerm_subnet.databricks_public",
+            "module.network.azurerm_subnet_network_security_group_association.private_nsg_assoc",
+            "module.network.azurerm_subnet_network_security_group_association.public_nsg_assoc",
+            "module.workspace.azurerm_databricks_workspace.this"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.access_connector",
+      "mode": "managed",
+      "type": "azurerm_private_endpoint",
+      "name": "pep_blob",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "status": "tainted",
+          "schema_version": 0,
+          "attributes": {
+            "custom_dns_configs": null,
+            "custom_network_interface_name": null,
+            "id": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01/providers/Microsoft.Network/privateEndpoints/pep-databricks-blob",
+            "ip_configuration": [],
+            "location": "uksouth",
+            "name": "pep-databricks-blob",
+            "network_interface": null,
+            "private_dns_zone_configs": null,
+            "private_dns_zone_group": [
+              {
+                "id": "",
+                "name": "default",
+                "private_dns_zone_ids": [
+                  "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-network-prod/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net"
+                ]
+              }
+            ],
+            "private_service_connection": [
+              {
+                "is_manual_connection": false,
+                "name": "psc-databricks-blob",
+                "private_connection_resource_alias": "",
+                "private_connection_resource_id": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01-managed/providers/Microsoft.Storage/storageAccounts/dbstoragezyqzceirxjn72",
+                "private_ip_address": "",
+                "request_message": "",
+                "subresource_names": [
+                  "blob"
+                ]
+              }
+            ],
+            "resource_group_name": "rg-databricks-prod-uks-01",
+            "subnet_id": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01/providers/Microsoft.Network/virtualNetworks/vnet-databricks-prod/subnets/snet-databricks-pep",
+            "tags": null,
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozNjAwMDAwMDAwMDAwLCJkZWxldGUiOjM2MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjozNjAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_virtual_network.vnet_databricks",
+            "data.azurerm_resource_group.rg_databricks",
+            "module.network.azurerm_network_security_group.private_nsg",
+            "module.network.azurerm_network_security_group.public_nsg",
+            "module.network.azurerm_subnet.databricks_private",
+            "module.network.azurerm_subnet.databricks_public",
+            "module.network.azurerm_subnet.pep_subnet",
+            "module.network.azurerm_subnet_network_security_group_association.private_nsg_assoc",
+            "module.network.azurerm_subnet_network_security_group_association.public_nsg_assoc",
+            "module.workspace.azurerm_databricks_workspace.this"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.access_connector",
+      "mode": "managed",
+      "type": "azurerm_private_endpoint",
+      "name": "pep_control_plane",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "custom_dns_configs": [],
+            "custom_network_interface_name": "",
+            "id": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01/providers/Microsoft.Network/privateEndpoints/pep-databricks-control-plane",
+            "ip_configuration": [],
+            "location": "uksouth",
+            "name": "pep-databricks-control-plane",
+            "network_interface": [
+              {
+                "id": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01/providers/Microsoft.Network/networkInterfaces/pep-databricks-control-plane.nic.e7017da5-0155-4777-a5eb-c26d2b3f6fb9",
+                "name": "pep-databricks-control-plane.nic.e7017da5-0155-4777-a5eb-c26d2b3f6fb9"
+              }
+            ],
+            "private_dns_zone_configs": [],
+            "private_dns_zone_group": [],
+            "private_service_connection": [
+              {
+                "is_manual_connection": false,
+                "name": "psc-databricks-control-plane",
+                "private_connection_resource_alias": "",
+                "private_connection_resource_id": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01/providers/Microsoft.Databricks/workspaces/db-databricks-prod-uks-01",
+                "private_ip_address": "10.40.12.5",
+                "request_message": "",
+                "subresource_names": [
+                  "databricks_ui_api"
+                ]
+              }
+            ],
+            "resource_group_name": "rg-databricks-prod-uks-01",
+            "subnet_id": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01/providers/Microsoft.Network/virtualNetworks/vnet-databricks-prod/subnets/snet-databricks-pep",
+            "tags": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "name": "pep-databricks-control-plane",
+            "resource_group_name": "rg-databricks-prod-uks-01",
+            "subscription_id": "70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozNjAwMDAwMDAwMDAwLCJkZWxldGUiOjM2MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjozNjAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIwIn0="
+        }
+      ]
+    },
+    {
+      "module": "module.access_connector",
+      "mode": "managed",
+      "type": "azurerm_private_endpoint",
+      "name": "pep_dfs",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "status": "tainted",
+          "schema_version": 0,
+          "attributes": {
+            "custom_dns_configs": null,
+            "custom_network_interface_name": null,
+            "id": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01/providers/Microsoft.Network/privateEndpoints/pep-databricks-dfs",
+            "ip_configuration": [],
+            "location": "uksouth",
+            "name": "pep-databricks-dfs",
+            "network_interface": null,
+            "private_dns_zone_configs": null,
+            "private_dns_zone_group": [
+              {
+                "id": "",
+                "name": "default",
+                "private_dns_zone_ids": [
+                  "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-network-prod/providers/Microsoft.Network/privateDnsZones/privatelink.dfs.core.windows.net"
+                ]
+              }
+            ],
+            "private_service_connection": [
+              {
+                "is_manual_connection": false,
+                "name": "psc-databricks-dfs",
+                "private_connection_resource_alias": "",
+                "private_connection_resource_id": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01-managed/providers/Microsoft.Storage/storageAccounts/dbstoragezyqzceirxjn72",
+                "private_ip_address": "",
+                "request_message": "",
+                "subresource_names": [
+                  "dfs"
+                ]
+              }
+            ],
+            "resource_group_name": "rg-databricks-prod-uks-01",
+            "subnet_id": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01/providers/Microsoft.Network/virtualNetworks/vnet-databricks-prod/subnets/snet-databricks-pep",
+            "tags": null,
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozNjAwMDAwMDAwMDAwLCJkZWxldGUiOjM2MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjozNjAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_virtual_network.vnet_databricks",
+            "data.azurerm_resource_group.rg_databricks",
+            "module.network.azurerm_network_security_group.private_nsg",
+            "module.network.azurerm_network_security_group.public_nsg",
+            "module.network.azurerm_subnet.databricks_private",
+            "module.network.azurerm_subnet.databricks_public",
+            "module.network.azurerm_subnet.pep_subnet",
+            "module.network.azurerm_subnet_network_security_group_association.private_nsg_assoc",
+            "module.network.azurerm_subnet_network_security_group_association.public_nsg_assoc",
+            "module.workspace.azurerm_databricks_workspace.this"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.access_connector",
+      "mode": "managed",
+      "type": "azurerm_private_endpoint",
+      "name": "pep_webauth",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "custom_dns_configs": [],
+            "custom_network_interface_name": "",
+            "id": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01/providers/Microsoft.Network/privateEndpoints/pep-databricks-webauth",
+            "ip_configuration": [],
+            "location": "uksouth",
+            "name": "pep-databricks-webauth",
+            "network_interface": [
+              {
+                "id": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01/providers/Microsoft.Network/networkInterfaces/pep-databricks-webauth.nic.96d04fc4-c422-4a96-8960-3ff5b9a1de9f",
+                "name": "pep-databricks-webauth.nic.96d04fc4-c422-4a96-8960-3ff5b9a1de9f"
+              }
+            ],
+            "private_dns_zone_configs": [],
+            "private_dns_zone_group": [],
+            "private_service_connection": [
+              {
+                "is_manual_connection": false,
+                "name": "psc-databricks-webauth",
+                "private_connection_resource_alias": "",
+                "private_connection_resource_id": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01/providers/Microsoft.Databricks/workspaces/db-databricks-prod-uks-01",
+                "private_ip_address": "10.40.12.4",
+                "request_message": "",
+                "subresource_names": [
+                  "browser_authentication"
+                ]
+              }
+            ],
+            "resource_group_name": "rg-databricks-prod-uks-01",
+            "subnet_id": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01/providers/Microsoft.Network/virtualNetworks/vnet-databricks-prod/subnets/snet-databricks-pep",
+            "tags": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "name": "pep-databricks-webauth",
+            "resource_group_name": "rg-databricks-prod-uks-01",
+            "subscription_id": "70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozNjAwMDAwMDAwMDAwLCJkZWxldGUiOjM2MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjozNjAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIwIn0="
+        }
+      ]
+    },
+    {
+      "module": "module.network",
+      "mode": "managed",
+      "type": "azurerm_network_security_group",
+      "name": "private_nsg",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01/providers/Microsoft.Network/networkSecurityGroups/nsg-databricks-private",
+            "location": "uksouth",
+            "name": "nsg-databricks-private",
+            "resource_group_name": "rg-databricks-prod-uks-01",
+            "security_rule": [
+              {
+                "access": "Allow",
+                "description": "Required for worker communication with Azure Eventhub services.",
+                "destination_address_prefix": "EventHub",
+                "destination_address_prefixes": [],
+                "destination_application_security_group_ids": [],
+                "destination_port_range": "9093",
+                "destination_port_ranges": [],
+                "direction": "Outbound",
+                "name": "Microsoft.Databricks-workspaces_UseOnly_databricks-worker-to-eventhub",
+                "priority": 104,
+                "protocol": "Tcp",
+                "source_address_prefix": "VirtualNetwork",
+                "source_address_prefixes": [],
+                "source_application_security_group_ids": [],
+                "source_port_range": "*",
+                "source_port_ranges": []
+              },
+              {
+                "access": "Allow",
+                "description": "Required for worker nodes communication within a cluster.",
+                "destination_address_prefix": "VirtualNetwork",
+                "destination_address_prefixes": [],
+                "destination_application_security_group_ids": [],
+                "destination_port_range": "*",
+                "destination_port_ranges": [],
+                "direction": "Inbound",
+                "name": "Microsoft.Databricks-workspaces_UseOnly_databricks-worker-to-worker-inbound",
+                "priority": 100,
+                "protocol": "*",
+                "source_address_prefix": "VirtualNetwork",
+                "source_address_prefixes": [],
+                "source_application_security_group_ids": [],
+                "source_port_range": "*",
+                "source_port_ranges": []
+              },
+              {
+                "access": "Allow",
+                "description": "Required for worker nodes communication within a cluster.",
+                "destination_address_prefix": "VirtualNetwork",
+                "destination_address_prefixes": [],
+                "destination_application_security_group_ids": [],
+                "destination_port_range": "*",
+                "destination_port_ranges": [],
+                "direction": "Outbound",
+                "name": "Microsoft.Databricks-workspaces_UseOnly_databricks-worker-to-worker-outbound",
+                "priority": 100,
+                "protocol": "*",
+                "source_address_prefix": "VirtualNetwork",
+                "source_address_prefixes": [],
+                "source_application_security_group_ids": [],
+                "source_port_range": "*",
+                "source_port_ranges": []
+              },
+              {
+                "access": "Allow",
+                "description": "Required for workers communication with Azure SQL services.",
+                "destination_address_prefix": "Sql",
+                "destination_address_prefixes": [],
+                "destination_application_security_group_ids": [],
+                "destination_port_range": "3306",
+                "destination_port_ranges": [],
+                "direction": "Outbound",
+                "name": "Microsoft.Databricks-workspaces_UseOnly_databricks-worker-to-sql",
+                "priority": 102,
+                "protocol": "Tcp",
+                "source_address_prefix": "VirtualNetwork",
+                "source_address_prefixes": [],
+                "source_application_security_group_ids": [],
+                "source_port_range": "*",
+                "source_port_ranges": []
+              },
+              {
+                "access": "Allow",
+                "description": "Required for workers communication with Azure Storage services.",
+                "destination_address_prefix": "Storage",
+                "destination_address_prefixes": [],
+                "destination_application_security_group_ids": [],
+                "destination_port_range": "443",
+                "destination_port_ranges": [],
+                "direction": "Outbound",
+                "name": "Microsoft.Databricks-workspaces_UseOnly_databricks-worker-to-storage",
+                "priority": 103,
+                "protocol": "Tcp",
+                "source_address_prefix": "VirtualNetwork",
+                "source_address_prefixes": [],
+                "source_application_security_group_ids": [],
+                "source_port_range": "*",
+                "source_port_ranges": []
+              },
+              {
+                "access": "Allow",
+                "description": "Required for workers communication with Databricks control plane.",
+                "destination_address_prefix": "AzureDatabricks",
+                "destination_address_prefixes": [],
+                "destination_application_security_group_ids": [],
+                "destination_port_range": "",
+                "destination_port_ranges": [
+                  "3306",
+                  "443",
+                  "8443-8451"
+                ],
+                "direction": "Outbound",
+                "name": "Microsoft.Databricks-workspaces_UseOnly_databricks-worker-to-databricks-webapp",
+                "priority": 101,
+                "protocol": "Tcp",
+                "source_address_prefix": "VirtualNetwork",
+                "source_address_prefixes": [],
+                "source_application_security_group_ids": [],
+                "source_port_range": "*",
+                "source_port_ranges": []
+              }
+            ],
+            "tags": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "name": "nsg-databricks-private",
+            "resource_group_name": "rg-databricks-prod-uks-01",
+            "subscription_id": "70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "data.azurerm_resource_group.rg_databricks"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.network",
+      "mode": "managed",
+      "type": "azurerm_network_security_group",
+      "name": "public_nsg",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01/providers/Microsoft.Network/networkSecurityGroups/nsg-databricks-public",
+            "location": "uksouth",
+            "name": "nsg-databricks-public",
+            "resource_group_name": "rg-databricks-prod-uks-01",
+            "security_rule": [
+              {
+                "access": "Allow",
+                "description": "Required for worker communication with Azure Eventhub services.",
+                "destination_address_prefix": "EventHub",
+                "destination_address_prefixes": [],
+                "destination_application_security_group_ids": [],
+                "destination_port_range": "9093",
+                "destination_port_ranges": [],
+                "direction": "Outbound",
+                "name": "Microsoft.Databricks-workspaces_UseOnly_databricks-worker-to-eventhub",
+                "priority": 104,
+                "protocol": "Tcp",
+                "source_address_prefix": "VirtualNetwork",
+                "source_address_prefixes": [],
+                "source_application_security_group_ids": [],
+                "source_port_range": "*",
+                "source_port_ranges": []
+              },
+              {
+                "access": "Allow",
+                "description": "Required for worker nodes communication within a cluster.",
+                "destination_address_prefix": "VirtualNetwork",
+                "destination_address_prefixes": [],
+                "destination_application_security_group_ids": [],
+                "destination_port_range": "*",
+                "destination_port_ranges": [],
+                "direction": "Inbound",
+                "name": "Microsoft.Databricks-workspaces_UseOnly_databricks-worker-to-worker-inbound",
+                "priority": 100,
+                "protocol": "*",
+                "source_address_prefix": "VirtualNetwork",
+                "source_address_prefixes": [],
+                "source_application_security_group_ids": [],
+                "source_port_range": "*",
+                "source_port_ranges": []
+              },
+              {
+                "access": "Allow",
+                "description": "Required for worker nodes communication within a cluster.",
+                "destination_address_prefix": "VirtualNetwork",
+                "destination_address_prefixes": [],
+                "destination_application_security_group_ids": [],
+                "destination_port_range": "*",
+                "destination_port_ranges": [],
+                "direction": "Outbound",
+                "name": "Microsoft.Databricks-workspaces_UseOnly_databricks-worker-to-worker-outbound",
+                "priority": 100,
+                "protocol": "*",
+                "source_address_prefix": "VirtualNetwork",
+                "source_address_prefixes": [],
+                "source_application_security_group_ids": [],
+                "source_port_range": "*",
+                "source_port_ranges": []
+              },
+              {
+                "access": "Allow",
+                "description": "Required for workers communication with Azure SQL services.",
+                "destination_address_prefix": "Sql",
+                "destination_address_prefixes": [],
+                "destination_application_security_group_ids": [],
+                "destination_port_range": "3306",
+                "destination_port_ranges": [],
+                "direction": "Outbound",
+                "name": "Microsoft.Databricks-workspaces_UseOnly_databricks-worker-to-sql",
+                "priority": 102,
+                "protocol": "Tcp",
+                "source_address_prefix": "VirtualNetwork",
+                "source_address_prefixes": [],
+                "source_application_security_group_ids": [],
+                "source_port_range": "*",
+                "source_port_ranges": []
+              },
+              {
+                "access": "Allow",
+                "description": "Required for workers communication with Azure Storage services.",
+                "destination_address_prefix": "Storage",
+                "destination_address_prefixes": [],
+                "destination_application_security_group_ids": [],
+                "destination_port_range": "443",
+                "destination_port_ranges": [],
+                "direction": "Outbound",
+                "name": "Microsoft.Databricks-workspaces_UseOnly_databricks-worker-to-storage",
+                "priority": 103,
+                "protocol": "Tcp",
+                "source_address_prefix": "VirtualNetwork",
+                "source_address_prefixes": [],
+                "source_application_security_group_ids": [],
+                "source_port_range": "*",
+                "source_port_ranges": []
+              },
+              {
+                "access": "Allow",
+                "description": "Required for workers communication with Databricks control plane.",
+                "destination_address_prefix": "AzureDatabricks",
+                "destination_address_prefixes": [],
+                "destination_application_security_group_ids": [],
+                "destination_port_range": "",
+                "destination_port_ranges": [
+                  "3306",
+                  "443",
+                  "8443-8451"
+                ],
+                "direction": "Outbound",
+                "name": "Microsoft.Databricks-workspaces_UseOnly_databricks-worker-to-databricks-webapp",
+                "priority": 101,
+                "protocol": "Tcp",
+                "source_address_prefix": "VirtualNetwork",
+                "source_address_prefixes": [],
+                "source_application_security_group_ids": [],
+                "source_port_range": "*",
+                "source_port_ranges": []
+              }
+            ],
+            "tags": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "name": "nsg-databricks-public",
+            "resource_group_name": "rg-databricks-prod-uks-01",
+            "subscription_id": "70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "data.azurerm_resource_group.rg_databricks"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.network",
+      "mode": "managed",
+      "type": "azurerm_subnet",
+      "name": "databricks_private",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "address_prefixes": [
+              "10.40.11.0/24"
+            ],
+            "default_outbound_access_enabled": true,
+            "delegation": [
+              {
+                "name": "databricks-delegation",
+                "service_delegation": [
+                  {
+                    "actions": [
+                      "Microsoft.Network/virtualNetworks/subnets/action"
+                    ],
+                    "name": "Microsoft.Databricks/workspaces"
+                  }
+                ]
+              }
+            ],
+            "id": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01/providers/Microsoft.Network/virtualNetworks/vnet-databricks-prod/subnets/snet-databricks-private-10.40.11.0_24",
+            "ip_address_pool": [],
+            "name": "snet-databricks-private-10.40.11.0_24",
+            "private_endpoint_network_policies": "Disabled",
+            "private_link_service_network_policies_enabled": true,
+            "resource_group_name": "rg-databricks-prod-uks-01",
+            "service_endpoint_policy_ids": [],
+            "service_endpoints": [],
+            "sharing_scope": "",
+            "timeouts": null,
+            "virtual_network_name": "vnet-databricks-prod"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "name": "snet-databricks-private-10.40.11.0_24",
+            "resource_group_name": "rg-databricks-prod-uks-01",
+            "subscription_id": "70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485",
+            "virtual_network_name": "vnet-databricks-prod"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_virtual_network.vnet_databricks",
+            "data.azurerm_resource_group.rg_databricks"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.network",
+      "mode": "managed",
+      "type": "azurerm_subnet",
+      "name": "databricks_public",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "address_prefixes": [
+              "10.40.10.0/24"
+            ],
+            "default_outbound_access_enabled": true,
+            "delegation": [
+              {
+                "name": "databricks-delegation",
+                "service_delegation": [
+                  {
+                    "actions": [
+                      "Microsoft.Network/virtualNetworks/subnets/action"
+                    ],
+                    "name": "Microsoft.Databricks/workspaces"
+                  }
+                ]
+              }
+            ],
+            "id": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01/providers/Microsoft.Network/virtualNetworks/vnet-databricks-prod/subnets/snet-databricks-public-10.40.10.0_24",
+            "ip_address_pool": [],
+            "name": "snet-databricks-public-10.40.10.0_24",
+            "private_endpoint_network_policies": "Disabled",
+            "private_link_service_network_policies_enabled": true,
+            "resource_group_name": "rg-databricks-prod-uks-01",
+            "service_endpoint_policy_ids": [],
+            "service_endpoints": [],
+            "sharing_scope": "",
+            "timeouts": null,
+            "virtual_network_name": "vnet-databricks-prod"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "name": "snet-databricks-public-10.40.10.0_24",
+            "resource_group_name": "rg-databricks-prod-uks-01",
+            "subscription_id": "70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485",
+            "virtual_network_name": "vnet-databricks-prod"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_virtual_network.vnet_databricks",
+            "data.azurerm_resource_group.rg_databricks"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.network",
+      "mode": "managed",
+      "type": "azurerm_subnet",
+      "name": "pep_subnet",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "address_prefixes": [
+              "10.40.12.0/24"
+            ],
+            "default_outbound_access_enabled": true,
+            "delegation": [],
+            "id": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01/providers/Microsoft.Network/virtualNetworks/vnet-databricks-prod/subnets/snet-databricks-pep",
+            "ip_address_pool": [],
+            "name": "snet-databricks-pep",
+            "private_endpoint_network_policies": "Disabled",
+            "private_link_service_network_policies_enabled": true,
+            "resource_group_name": "rg-databricks-prod-uks-01",
+            "service_endpoint_policy_ids": [],
+            "service_endpoints": [],
+            "sharing_scope": "",
+            "timeouts": null,
+            "virtual_network_name": "vnet-databricks-prod"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "name": "snet-databricks-pep",
+            "resource_group_name": "rg-databricks-prod-uks-01",
+            "subscription_id": "70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485",
+            "virtual_network_name": "vnet-databricks-prod"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_virtual_network.vnet_databricks",
+            "data.azurerm_resource_group.rg_databricks"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.network",
+      "mode": "managed",
+      "type": "azurerm_subnet_network_security_group_association",
+      "name": "private_nsg_assoc",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01/providers/Microsoft.Network/virtualNetworks/vnet-databricks-prod/subnets/snet-databricks-private-10.40.11.0_24",
+            "network_security_group_id": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01/providers/Microsoft.Network/networkSecurityGroups/nsg-databricks-private",
+            "subnet_id": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01/providers/Microsoft.Network/virtualNetworks/vnet-databricks-prod/subnets/snet-databricks-private-10.40.11.0_24",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "azurerm_virtual_network.vnet_databricks",
+            "data.azurerm_resource_group.rg_databricks",
+            "module.network.azurerm_network_security_group.private_nsg",
+            "module.network.azurerm_subnet.databricks_private"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.network",
+      "mode": "managed",
+      "type": "azurerm_subnet_network_security_group_association",
+      "name": "public_nsg_assoc",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01/providers/Microsoft.Network/virtualNetworks/vnet-databricks-prod/subnets/snet-databricks-public-10.40.10.0_24",
+            "network_security_group_id": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01/providers/Microsoft.Network/networkSecurityGroups/nsg-databricks-public",
+            "subnet_id": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01/providers/Microsoft.Network/virtualNetworks/vnet-databricks-prod/subnets/snet-databricks-public-10.40.10.0_24",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "azurerm_virtual_network.vnet_databricks",
+            "data.azurerm_resource_group.rg_databricks",
+            "module.network.azurerm_network_security_group.public_nsg",
+            "module.network.azurerm_subnet.databricks_public"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.workspace",
+      "mode": "managed",
+      "type": "azurerm_databricks_workspace",
+      "name": "this",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "access_connector_id": null,
+            "custom_parameters": [
+              {
+                "machine_learning_workspace_id": "",
+                "nat_gateway_name": "",
+                "no_public_ip": true,
+                "private_subnet_name": "snet-databricks-private-10.40.11.0_24",
+                "private_subnet_network_security_group_association_id": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01/providers/Microsoft.Network/virtualNetworks/vnet-databricks-prod/subnets/snet-databricks-private-10.40.11.0_24",
+                "public_ip_name": "",
+                "public_subnet_name": "snet-databricks-public-10.40.10.0_24",
+                "public_subnet_network_security_group_association_id": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01/providers/Microsoft.Network/virtualNetworks/vnet-databricks-prod/subnets/snet-databricks-public-10.40.10.0_24",
+                "storage_account_name": "dbstoragezyqzceirxjn72",
+                "storage_account_sku_name": "Standard_GRS",
+                "virtual_network_id": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01/providers/Microsoft.Network/virtualNetworks/vnet-databricks-prod",
+                "vnet_address_prefix": ""
+              }
+            ],
+            "customer_managed_key_enabled": false,
+            "default_storage_firewall_enabled": null,
+            "disk_encryption_set_id": "",
+            "enhanced_security_compliance": [],
+            "id": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01/providers/Microsoft.Databricks/workspaces/db-databricks-prod-uks-01",
+            "infrastructure_encryption_enabled": false,
+            "load_balancer_backend_address_pool_id": "",
+            "location": "uksouth",
+            "managed_disk_cmk_key_vault_id": "",
+            "managed_disk_cmk_key_vault_key_id": "",
+            "managed_disk_cmk_rotation_to_latest_version_enabled": false,
+            "managed_disk_identity": [],
+            "managed_resource_group_id": "/subscriptions/70dcb1f3-7b2f-4f8f-afa2-5ef1bf53d485/resourceGroups/rg-databricks-prod-uks-01-managed",
+            "managed_resource_group_name": "rg-databricks-prod-uks-01-managed",
+            "managed_services_cmk_key_vault_id": "",
+            "managed_services_cmk_key_vault_key_id": "",
+            "name": "db-databricks-prod-uks-01",
+            "network_security_group_rules_required": null,
+            "public_network_access_enabled": true,
+            "resource_group_name": "rg-databricks-prod-uks-01",
+            "sku": "premium",
+            "storage_account_identity": [],
+            "tags": {
+              "Environment": "Production",
+              "Owner": "DatabricksTeam",
+              "Project": "EnterpriseAnalytics"
+            },
+            "timeouts": null,
+            "workspace_id": "147050184823821",
+            "workspace_url": "adb-147050184823821.1.azuredatabricks.net"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_virtual_network.vnet_databricks",
+            "data.azurerm_resource_group.rg_databricks",
+            "module.network.azurerm_network_security_group.private_nsg",
+            "module.network.azurerm_network_security_group.public_nsg",
+            "module.network.azurerm_subnet.databricks_private",
+            "module.network.azurerm_subnet.databricks_public",
+            "module.network.azurerm_subnet_network_security_group_association.private_nsg_assoc",
+            "module.network.azurerm_subnet_network_security_group_association.public_nsg_assoc"
+          ]
+        }
+      ]
+    }
+  ],
+  "check_results": null
+}
