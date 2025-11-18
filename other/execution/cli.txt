@@ -1,0 +1,5 @@
+cd C:\Development\DatabricksIAC2\environments\??\??
+az login --scope https://graph.microsoft.com/.default
+terraform init
+terraform validate
+terraform plan

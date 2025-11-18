@@ -1,0 +1,9 @@
+Do I really need depends_on?
+Are the names for the private dns links normal?
+Get copilot to rename all this code blocks
+Why does workspace have variables that arent used?
+Why is there a sleep?
+Added an nsg to pep
+Why have adls and not dfs+blob for storage?
+What do I need to do about the service principals at the end?
+dbricks workspace provider definition
